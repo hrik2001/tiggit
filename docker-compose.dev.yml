@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  tiggit-server:
+    build:
+      context: ./tiggit-server
+      dockerfile: Dockerfile  # Adjust this if your Dockerfile is named differently
+    ports:
+      - "7000:7000"
+    environment:
+      HOST: "0.0.0.0"
+      PORT: "7000"
+      GIT_STORAGE_SYSTEM: "simple"
+      SIMPLE_STORAGE_DIR: "media"
+      DATABASE_URI: "mongodb://mongodb:27017/"
+    volumes:
+      - ./tiggit-server:/app  # Mount local code to the container for hot-reloading
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

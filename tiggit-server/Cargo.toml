@@ -9,7 +9,12 @@ edition = "2021"
 axum = "0.7.5"
 base64 = "0.22.1"
 dotenvy = "0.15.7"
+mongodb = "3.1.0"
 serde = { version = "1.0.210", features = ["derive"] }
 tokio = { version = "1.40.0", features = ["rt-multi-thread", "process", "io-util"] }
 tower-http = { version = "0.5.2", features = ["tracing", "trace"] }
 tracing-subscriber = "0.3.18"
+
+[[bin]]
+name = "tiggit-server"
+path = "src/main.rs"
